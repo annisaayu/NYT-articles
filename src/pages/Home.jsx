@@ -9,7 +9,7 @@ const Home = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [page, setPage] = useState(1)
-  const [hasMore, setHasMore] = useState(true)
+  const [hasMore, setHasMore] = useState(false)
   const [q, setQuery] = useState('')
   const [category, setCategory] = useState(null)
 
@@ -136,9 +136,10 @@ const Home = () => {
 
       {isLoading && <p className="text-center mt-4 text-charcoal">Loading...</p>}
 
-      {(!isLoading && !hasMore && articles.length > 0) && (
-        <p className="text-center mt-4 text-gray-500">You have reached the end of the results.</p>
-      )}
+      <footer className="text-xs text-center p-4 bg-darkGrey text-foggyGrey">
+        <p>Data provided by <a href="https://www.nytimes.com" target="_blank" rel="noopener noreferrer" className="text-warmGold hover:underline">The New York Times Company</a>. Designed and developed by annisaayu. </p>
+        <p>Copyright &copy; {new Date().getFullYear()} Annisa Ayu. All rights reserved.</p>
+      </footer>
     </div>
   )
 }
