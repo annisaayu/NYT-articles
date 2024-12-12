@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_KEY= process.env.REACT_APP_API_KEY
-const BASE_URL = process.env.REACT_APP_BASE_URL
+const BASE_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json"
 //blog480
 export const fetchArticles = async (query='', page=1, category) => {
   try {
