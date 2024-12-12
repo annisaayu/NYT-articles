@@ -11,6 +11,12 @@ const ArticleCard = ({ article, isLast}) => {
     thumbnailUrl,
   } = article;
 
+  const formattedDate = new Date(pub_date).toLocaleDateString('en-US', {
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric',
+  });
+
   const maxLength = 150;
   const truncatedParagraph = lead_paragraph.length > maxLength 
     ? lead_paragraph.slice(0, maxLength) + "..." 
@@ -33,7 +39,7 @@ const ArticleCard = ({ article, isLast}) => {
         <div className="p-4 lg:w-1/2">
           <h2 className="font-serif font-bold text-xl text-charcoal">{headline.main}</h2>
           <p className="text-sm text-gray-600">{byline.original || 'Unknown Author'}</p>
-          <p className="text-sm text-gray-500">Published: {new Date(pub_date).toLocaleDateString()}</p>
+          <p className="text-xs text-gray-500">{formattedDate}</p>
           <p className="text-sm mt-3 text-gray-500">{truncatedParagraph}</p>
         </div>
       </a>
