@@ -16,7 +16,6 @@ const CategoryFilter = ({ categories, onSelectCategory, selectedCategory }) => {
             } 
           `}
         >
-          {console.log(selectedCategory, category)}
           {category.toUpperCase()}
         </button>
       ))}
