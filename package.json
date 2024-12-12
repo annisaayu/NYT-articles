@@ -8,6 +8,7 @@
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "postcss": "^8.4.49",
+    "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",

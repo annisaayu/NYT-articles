@@ -1,15 +1,10 @@
+import PropTypes from "prop-types";
 import React, { useState } from "react";
 
 const SearchBar = ({ onSearch, isLoading }) => {
   const [query, setQuery] = useState('')
-  const [error, setError] = useState(null)
 
   const handleSearch = () => {
-    if (!query.trim()) {
-      setError('Keyword cannot be empty.');
-      return;
-    }
-    setError(null)
     onSearch(query)
   }
 
@@ -23,13 +18,12 @@ const SearchBar = ({ onSearch, isLoading }) => {
         className="p-2 rounded w-full bg-pearl focus:outline-none"
       />
       <button 
-        className="border border-darkGrey bg-pearl text-darkGrey px-6 py-2 rounded-full hover:bg-darkGrey hover:text-pearl transition-colors"
+        className="border border-darkGrey bg-pearl text-darkGrey px-6 py-2 rounded-full hover:bg-darkGrey hover:text-pearl transition-colors disabled:bg-foggyGrey disabled:cursor-not-allowed disabled:text-darkGrey"
         onClick={handleSearch}
-        disabled={isLoading}
+        disabled={isLoading || !query.trim()}
       >
         {isLoading ? 'Searching...' : 'Search'}
       </button>
-      <span className="text-red-500">{error}</span>
     </div>
   )
 }

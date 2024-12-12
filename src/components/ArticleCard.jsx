@@ -1,5 +1,6 @@
 import React from "react";
 import NoImg from "../assets/images/no-img.jpg"
+import PropTypes from "prop-types";
 
 const ArticleCard = ({ article, isLast}) => {
   const {

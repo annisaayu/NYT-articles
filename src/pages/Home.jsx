@@ -3,23 +3,31 @@ import { fetchArticles } from "../services/api";
 import ArticleCard from "../components/ArticleCard";
 import SearchBar from "../components/SearchBar";
 import CategoryFilter from "../components/CategoryFilter";
+import Footer from "../components/Footer";
+import StatusMessage from "../components/StatusMessage";
 
 const Home = () => {
   const [articles, setArticles] = useState([])
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(false)
+  const [errMsg, setErrMsg] = useState('false')
   const [isLoading, setIsLoading] = useState(false)
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
-  const [q, setQuery] = useState('')
+  const [q, setQ] = useState('')
   const [category, setCategory] = useState(null)
 
   const maxPage = 10
 
   const categories = ["arts", "movies", "technology", "sports", "Business Day"];
+
+  const handleClickHeader = () => {
+    window.location.reload()
+  };
   
   const handleSearch = useCallback(async (query, pageNum = 1) => {
-    setIsLoading(true);
-    setError(null)
+    setIsLoading(true)
+    setError(false)
+    setErrMsg('')
     try {
       const result = await fetchArticles(query, pageNum, category);
       if (result.length === 0 || pageNum === 10) {
@@ -28,7 +36,8 @@ const Home = () => {
         setArticles((prevArticles) => (pageNum === 1 ? result : [...prevArticles, ...result]));
       }
     } catch (e) {
-      setError(e?.message ?? 'Failed to fetch the articles. Please try again.');
+      setError(true)
+      setErrMsg(e?.message ?? 'Failed to fetch the articles. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -70,18 +79,23 @@ const Home = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasMore, isLoading, page]);
+  }, [hasMore, isLoading, page, error]);
 
   return (
     <div className="max-w-screen-md mx-auto flex flex-col min-h-screen border border-t-0 border-b-0 border-darkGrey">
       <main className="flex-grow">
-        <h1 className="font-serif font-bold text-6xl text-center mb-4 px-4 py-8 text-charcoal">NYT Article Search</h1>
+        <h1
+          className="font-serif font-bold text-6xl text-center mb-4 px-4 py-8 text-charcoal hover:cursor-pointer"
+          onClick={handleClickHeader}
+        >
+          NYT Article Search
+        </h1>
         <SearchBar 
           onSearch={(query) => {
             setPage(1);
             setArticles([]);
             setHasMore(true);
-            setQuery(query);
+            setQ(query);
           }} 
           isLoading={isLoading} 
         />
@@ -92,10 +106,11 @@ const Home = () => {
           onSelectCategory={handleCategorySelect}
         />
         {error && (
-          <div className="text-center text-red-500 my-4">
-            <strong>Error:</strong> {error}
-          </div>
+          <p className="text-center text-redorg my-4">
+            <strong>Error:</strong> {errMsg}
+          </p>
         )}
+
         <div className="p-4">
           {articles.map((article, index) => (
             <ArticleCard 
@@ -105,17 +120,15 @@ const Home = () => {
             />
           ))}
         </div>
-
-        {(articles.length === 0 && !error && !isLoading) && <p className="text-center mt-4 text-gray-500">No articles found. Please try another keyword.</p>
-        }
-
-        {isLoading && <p className="text-center mt-4 text-charcoal">Loading...</p>}
+        
+        <StatusMessage
+          isLoading={isLoading}
+          error={error}
+          emptyArticles={articles.length === 0}
+        />
       </main>
 
-      <footer className="text-xs text-center p-4 bg-darkGrey text-foggyGrey">
-        <p>Data provided by <a href="https://www.nytimes.com" target="_blank" rel="noopener noreferrer" className="text-warmGold hover:underline">The New York Times Company</a>. Designed and developed by annisaayu. </p>
-        <p>Copyright &copy; {new Date().getFullYear()} Annisa Ayu. All rights reserved.</p>
-      </footer>
+      <Footer/>
     </div>
   )
 }
