@@ -14,7 +14,7 @@ const SearchBar = ({ onSearch, isLoading }) => {
   }
 
   return (
-    <div className="px-4 border border-darkGrey border-x-0 py-2 flex items-center gap-2">
+    <div className="px-4 border border-darkGrey border-x-0 py-2 flex items-center">
       <input
         type="text"
         value={query}

@@ -2,7 +2,7 @@ import React from 'react';
 
 const CategoryFilter = ({ categories, onSelectCategory, selectedCategory }) => {
   return (
-    <div className="p-4 border border-darkGrey border-x-0 border-t-0 flex flex-wrap  items-center justify-center gap-2">
+    <div className="p-4 border border-darkGrey border-x-0 border-t-0 flex flex-wrap  items-center gap-2">
      <p className='p-0 m-0'>Categories: </p>
      <div className='flex flex-wrap items-center justify-center gap-2'>
       {categories.map((category) => (
