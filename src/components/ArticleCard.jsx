@@ -1,4 +1,5 @@
 import React from "react";
+import NoImg from "../assets/images/no-img.jpg"
 
 const ArticleCard = ({ article, isLast}) => {
   const {
@@ -25,7 +26,7 @@ const ArticleCard = ({ article, isLast}) => {
       >
         {/* Left: Thumbnail Image */}
         <div className="lg:w-1/2 flex items-center">
-          <img src={thumbnailUrl} alt={headline.main} className="w-full h-auto object-cover rounded" />
+          <img src={thumbnailUrl ?? NoImg} alt={headline.main} className="w-full h-auto object-cover rounded" />
         </div>
 
         {/* Right: Text Content */}
