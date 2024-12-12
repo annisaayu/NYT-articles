@@ -100,7 +100,7 @@ const Home = () => {
 
   return (
     <div className="max-w-screen-md min-h-screen mx-auto border border-t-0 border-b-0 border-darkGrey">
-      <h1 className="font-serif font-bold text-7xl text-center mb-4 px-4 py-8 text-charcoal">NYT Article Search</h1>
+      <h1 className="font-serif font-bold text-6xl text-center mb-4 px-4 py-8 text-charcoal">NYT Article Search</h1>
       <SearchBar 
         onSearch={(query) => {
           setPage(1);
