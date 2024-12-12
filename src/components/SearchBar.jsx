@@ -34,7 +34,7 @@ const SearchBar = ({ onSearch, isLoading }) => {
   )
 }
 
-CategoryFilter.propTypes = {
+SearchBar.propTypes = {
   onSearch: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
 };
