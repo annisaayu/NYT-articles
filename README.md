@@ -48,7 +48,6 @@ To run this project locally, follow the steps below:
 4. Create a `.env` file in the root directory and add your NYT API key:
    ```env
    REACT_APP_API_KEY=your-nyt-api-key
-   REACT_APP_BASE_URL=https://api.nytimes.com/svc/search/v2/articlesearch.json
    ```
 
 5. Run the application:
