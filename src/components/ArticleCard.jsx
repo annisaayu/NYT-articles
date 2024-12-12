@@ -1,6 +1,6 @@
 import React from "react";
 
-const ArticleCard = ({ article }) => {
+const ArticleCard = ({ article, isLast}) => {
   const {
     byline,
     headline,
@@ -8,7 +8,6 @@ const ArticleCard = ({ article }) => {
     pub_date,
     web_url,
     thumbnailUrl,
-    isLast,
   } = article;
 
   const maxLength = 150;
