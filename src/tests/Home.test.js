@@ -8,6 +8,13 @@ jest.mock('axios', () => ({
   get: jest.fn(() => Promise.resolve({ data: [] })),
 }));
 
+const mockFetchArticles = () => {
+  fetchArticles.mockImplementation(
+    () => new Promise((resolve) => {
+      setTimeout(() => resolve([]), 1000);
+    })
+  );
+}
 
 describe("Home Page", () => {
 
@@ -68,11 +75,7 @@ describe("Home Page", () => {
   });
 
   test("loading indicator during API call", async () => {
-    fetchArticles.mockImplementation(
-      () => new Promise((resolve) => {
-        setTimeout(() => resolve([]), 1000);
-      })
-    );
+    mockFetchArticles()
 
     render(<Home/>);
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_KEY= process.env.REACT_APP_API_KEY
 const BASE_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json"
 //blog480
-export const fetchArticles = async (query='', page=1, category) => {
+export const fetchArticles = async (query='', page=1, category=null) => {
   try {
     let fq = '';
     
@@ -19,7 +19,7 @@ export const fetchArticles = async (query='', page=1, category) => {
         'api-key': API_KEY
       }
     })
-    const {response, status} = res?.data
+    const {response, status} = res?.data ?? {}
     if( status.toLowerCase() !== 'ok') {
       throw new Error("Error fetching articles")
     }

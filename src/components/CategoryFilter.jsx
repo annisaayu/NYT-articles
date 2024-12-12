@@ -24,4 +24,10 @@ const CategoryFilter = ({ categories, onSelectCategory, selectedCategory }) => {
   );
 };
 
+CategoryFilter.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onSelectCategory: PropTypes.func.isRequired,
+  selectedCategory: PropTypes.string,
+};
+
 export default CategoryFilter;

@@ -50,4 +50,20 @@ const ArticleCard = ({ article, isLast}) => {
   );
 };
 
+ArticleCard.propTypes = {
+  article: PropTypes.shape({
+    byline: PropTypes.shape({
+      original: PropTypes.string,
+    }),
+    headline: PropTypes.shape({
+      main: PropTypes.string.isRequired,
+    }).isRequired,
+    lead_paragraph: PropTypes.string.isRequired,
+    pub_date: PropTypes.string.isRequired,
+    web_url: PropTypes.string.isRequired,
+    thumbnailUrl: PropTypes.string,
+  }).isRequired,
+  isLast: PropTypes.bool,
+};
+
 export default ArticleCard;
