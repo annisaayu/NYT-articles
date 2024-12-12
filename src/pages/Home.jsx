@@ -9,7 +9,7 @@ const Home = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [page, setPage] = useState(1)
-  const [hasMore, setHasMore] = useState(false)
+  const [hasMore, setHasMore] = useState(true)
   const [q, setQuery] = useState('')
   const [category, setCategory] = useState(null)
 
